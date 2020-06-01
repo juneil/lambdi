@@ -2,16 +2,9 @@ import { DynamoDB, S3, SQS, SNS } from 'aws-sdk';
 import { Lambda } from './decorators';
 import { Provider } from './interfaces';
 
-import {
-    Context,
-    APIGatewayProxyEvent,
-    APIGatewayProxyResult,
-    S3Event,
-    SNSEvent,
-    SQSEvent
-} from 'aws-lambda';
+import { Context } from 'aws-lambda';
 
-export { Context, APIGatewayProxyEvent, APIGatewayProxyResult, S3Event, SNSEvent, SQSEvent };
+export { Context };
 
 function getServicePort(service: string): string {
     switch (service) {

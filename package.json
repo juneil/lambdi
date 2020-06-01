@@ -60,6 +60,7 @@
         "typescript": "^3.8.3"
     },
     "peerDependencies": {
-        "aws-sdk": "^2.686.0"
+        "aws-sdk": "^2.686.0",
+        "@types/aws-lambda": "^8.10.51"
     }
 }

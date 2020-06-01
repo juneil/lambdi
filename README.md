@@ -50,7 +50,7 @@ Example:
 class MyLambda implements OnHandler<Event, Result> { ... }
 ```
 
-## Service
+## Service Decorator
 
 `@Service()`
 

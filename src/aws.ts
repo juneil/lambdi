@@ -1,4 +1,4 @@
-import AWS from 'aws-sdk';
+import { DynamoDB, S3 } from 'aws-sdk';
 import { Lambda } from './decorators';
 import { Provider } from './interfaces';
 
@@ -25,13 +25,13 @@ function params(service: string, lambda: Lambda) {
 export const AWSProviders = (lambda: Lambda = {}) =>
     [
         {
-            provide: AWS.DynamoDB.DocumentClient,
-            useFactory: () => new AWS.DynamoDB.DocumentClient(params('dynamodb', lambda)),
+            provide: DynamoDB.DocumentClient,
+            useFactory: () => new DynamoDB.DocumentClient(params('dynamodb', lambda)),
             deps: []
         },
         {
-            provide: AWS.S3,
-            useFactory: () => new AWS.S3(params('s3', lambda)),
+            provide: S3,
+            useFactory: () => new S3(params('s3', lambda)),
             deps: []
         }
     ] as Provider[];

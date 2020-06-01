@@ -6,7 +6,7 @@ describe('Unit tests', () => {
     test('Lambda without options', () => {
         @Lambda()
         class MyLambda implements OnHandler<any, any, any> {
-            onHandler(event: any, context: any) {
+            onHandler() {
                 throw new Error('Method not implemented.');
             }
         }
@@ -19,7 +19,7 @@ describe('Unit tests', () => {
     test('Lambda with options', () => {
         @Lambda({ localstack: true })
         class MyLambda implements OnHandler<any, any, any> {
-            onHandler(event: any, context: any) {
+            onHandler() {
                 throw new Error('Method not implemented.');
             }
         }
@@ -32,7 +32,7 @@ describe('Unit tests', () => {
     test('Lambda Handler call', () => {
         @Lambda()
         class MyLambda implements OnHandler<string, any, any> {
-            onHandler(event: any, context: any) {
+            onHandler() {
                 return 'ok';
             }
         }
@@ -53,7 +53,7 @@ describe('Unit tests', () => {
         })
         class MyLambda implements OnHandler<string, any, any> {
             constructor(private srv: MyService) {}
-            onHandler(event: any, context: any) {
+            onHandler() {
                 return this.srv.hello();
             }
         }
@@ -81,7 +81,7 @@ describe('Unit tests', () => {
         })
         class MyLambda implements OnHandler<string, any, any> {
             constructor(private srv1: MyService1, private srv2: MyService2) {}
-            onHandler(event: any, context: any) {
+            onHandler() {
                 return `${this.srv1.hello()} ${this.srv2.world()}`;
             }
         }
@@ -110,7 +110,7 @@ describe('Unit tests', () => {
         })
         class MyLambda implements OnHandler<string, any, any> {
             constructor(private srv1: MyService1) {}
-            onHandler(event: any, context: any) {
+            onHandler() {
                 return this.srv1.hello();
             }
         }

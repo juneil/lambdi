@@ -24,5 +24,5 @@ export interface Provider {
  * @returns void | R
  */
 export interface OnHandler<R, E, C> {
-    onHandler(event: E, context: C): void | R;
+    onHandler(event?: E, context?: C): void | R;
 }

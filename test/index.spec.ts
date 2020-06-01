@@ -5,7 +5,7 @@ import { extractMetadataByDecorator } from '../src/metadata';
 describe('Unit tests', () => {
     test('Lambda without options', () => {
         @Lambda()
-        class MyLambda implements OnHandler<any, any, any> {
+        class MyLambda implements OnHandler<any, any> {
             onHandler() {
                 throw new Error('Method not implemented.');
             }
@@ -18,7 +18,7 @@ describe('Unit tests', () => {
 
     test('Lambda with options', () => {
         @Lambda({ localstack: true })
-        class MyLambda implements OnHandler<any, any, any> {
+        class MyLambda implements OnHandler<any, any> {
             onHandler() {
                 throw new Error('Method not implemented.');
             }
@@ -31,7 +31,7 @@ describe('Unit tests', () => {
 
     test('Lambda Handler call', () => {
         @Lambda()
-        class MyLambda implements OnHandler<string, any, any> {
+        class MyLambda implements OnHandler<any, string> {
             onHandler() {
                 return 'ok';
             }
@@ -51,7 +51,7 @@ describe('Unit tests', () => {
         @Lambda({
             providers: [MyService]
         })
-        class MyLambda implements OnHandler<string, any, any> {
+        class MyLambda implements OnHandler<any, string> {
             constructor(private srv: MyService) {}
             onHandler() {
                 return this.srv.hello();
@@ -79,7 +79,7 @@ describe('Unit tests', () => {
         @Lambda({
             providers: [MyService1, MyService2]
         })
-        class MyLambda implements OnHandler<string, any, any> {
+        class MyLambda implements OnHandler<any, string> {
             constructor(private srv1: MyService1, private srv2: MyService2) {}
             onHandler() {
                 return `${this.srv1.hello()} ${this.srv2.world()}`;
@@ -108,7 +108,7 @@ describe('Unit tests', () => {
         @Lambda({
             providers: [MyService1, MyService2]
         })
-        class MyLambda implements OnHandler<string, any, any> {
+        class MyLambda implements OnHandler<any, string> {
             constructor(private srv1: MyService1) {}
             onHandler() {
                 return this.srv1.hello();

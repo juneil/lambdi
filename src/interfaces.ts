@@ -1,3 +1,5 @@
+import { Context } from './aws';
+
 /**
  * Class type
  */
@@ -23,6 +25,6 @@ export interface Provider {
  *
  * @returns void | R
  */
-export interface OnHandler<R, E, C> {
-    onHandler(event?: E, context?: C): void | R;
+export interface OnHandler<E, R> {
+    onHandler(event?: E, context?: Context): void | R;
 }

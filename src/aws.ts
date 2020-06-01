@@ -1,6 +1,17 @@
-import { DynamoDB, S3 } from 'aws-sdk';
+import { DynamoDB, S3, SQS, SNS } from 'aws-sdk';
 import { Lambda } from './decorators';
 import { Provider } from './interfaces';
+
+import {
+    Context,
+    APIGatewayProxyEvent,
+    APIGatewayProxyResult,
+    S3Event,
+    SNSEvent,
+    SQSEvent
+} from 'aws-lambda';
+
+export { Context, APIGatewayProxyEvent, APIGatewayProxyResult, S3Event, SNSEvent, SQSEvent };
 
 function getServicePort(service: string): string {
     switch (service) {
@@ -8,6 +19,10 @@ function getServicePort(service: string): string {
             return '4572';
         case 'dynamodb':
             return '4569';
+        case 'sqs':
+            return '4576';
+        case 'sns':
+            return '4575';
     }
 }
 
@@ -32,6 +47,16 @@ export const AWSProviders = (lambda: Lambda = {}) =>
         {
             provide: S3,
             useFactory: () => new S3(params('s3', lambda)),
+            deps: []
+        },
+        {
+            provide: SQS,
+            useFactory: () => new SQS(params('sqs', lambda)),
+            deps: []
+        },
+        {
+            provide: SNS,
+            useFactory: () => new SNS(params('sns', lambda)),
             deps: []
         }
     ] as Provider[];

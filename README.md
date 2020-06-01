@@ -1,4 +1,5 @@
 # LambDI
+![Build](https://github.com/juneil/lambdi/workflows/Build/badge.svg)
 
 Lambda with Typescript and DI
 

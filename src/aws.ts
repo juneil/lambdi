@@ -20,7 +20,7 @@ function getServicePort(service: string): string {
 }
 
 function params(service: string, lambda: Lambda) {
-    return lambda.localstack && process.env.AWS_SAM_LOCAL
+    return process.env.AWS_SAM_LOCAL
         ? { endpoint: `http://localstack:${getServicePort(service)}` }
         : {};
 }

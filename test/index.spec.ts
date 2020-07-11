@@ -13,11 +13,11 @@ describe('Unit tests', () => {
 
         const metadata = extractMetadataByDecorator<Lambda>(MyLambda, 'Lambda');
 
-        expect(metadata).toMatchObject({ localstack: undefined });
+        expect(metadata).toMatchObject({});
     });
 
     test('Lambda with options', () => {
-        @Lambda({ localstack: true })
+        @Lambda({})
         class MyLambda implements OnHandler<any, any> {
             onHandler() {
                 throw new Error('Method not implemented.');
@@ -26,7 +26,7 @@ describe('Unit tests', () => {
 
         const metadata = extractMetadataByDecorator<Lambda>(MyLambda, 'Lambda');
 
-        expect(metadata).toMatchObject({ localstack: true });
+        expect(metadata).toMatchObject({});
     });
 
     test('Lambda Handler call', () => {

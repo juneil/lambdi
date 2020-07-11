@@ -28,12 +28,10 @@ function createDecorator<T>(name: string, props?: { [name: string]: any }): Core
  * @Annotation
  */
 export interface Lambda {
-    localstack?: boolean;
     providers?: (Type<any> | Provider)[];
 }
 
 export const Lambda = createDecorator<Lambda>('Lambda', {
-    localstack: undefined,
     providers: undefined
 });
 
